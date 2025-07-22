@@ -5,12 +5,11 @@ on:
     branches: 
       - master
   schedule:
-    - cron: '*/15 * * * *'
-  workflow_dispatch:  # 添加此行以启用手动触发
+    - cron: '*/16 * * * *'
 
 jobs:
   build:
-    runs-on: ubuntu-22.04 # 更换为支持的系统
+    runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
         uses: actions/checkout@v3
@@ -19,9 +18,8 @@ jobs:
         with:
           python-version: 3.7
       - name: 'Install dependencies'
-        run: |
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: 'Run cf2dns'
+        run: if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: 'run cf2dns'
         env:
           CONFIG: ${{ secrets.CONFIG }}
           DOMAINS: ${{ secrets.DOMAINS }}
