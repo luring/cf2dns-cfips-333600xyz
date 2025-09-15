@@ -4,8 +4,9 @@ on:
   push:
     branches: 
       - master
-  schedule:
-    - cron: '*/16 * * * *'
+ #去除注释才可以按计划自动执行    
+ # schedule:
+ #   - cron: '*/16 * * * *'
 
 jobs:
   build:
